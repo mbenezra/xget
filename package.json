@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "q": "^1.1.2",
+    "q-io": "^1.11.6",
     "underscore": "^1.7.0"
   }
 }
