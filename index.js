@@ -8,15 +8,16 @@ var Q = require('q');
 
 function singleUrl(url, key) {
     var deferred = Q.defer();
-    HTTP.request('http://localhost:3000/' + url)
-        .then(function (response) {
-            return response.body.read();
-        })
+    HTTP.read('http://localhost:3000/' + url)
         .then(function (body) {
-            var obj = new Object();
+            var obj = {};
             obj[key] = JSON.parse(body);
             deferred.resolve(obj);
-        });
+        })
+        .fail(function(err){
+            deferred.resolve({});
+        })
+        .done();
 
     return deferred.promise;
 }
@@ -30,21 +31,20 @@ function multipleUrls(urls) {
 }
 
 function multiGet(urls) {
-    var data = [],
+
+    var data = {},
         deferred = Q.defer();
 
         multipleUrls(urls).then(function (result) {
-            _.each(result, function (html) {
-                console.log('html -> ' + html);
-                data.push(html);
-        });
+            _.each(result, function (json) {
+                data = _.extend(data, json);
+            });
 
-        deferred.resolve(data);
-    });
+            deferred.resolve(data);
+        });
 
     return deferred.promise;
 }
-
 
 module.exports = function (){
     return function (req, res, next){
@@ -56,9 +56,7 @@ module.exports = function (){
         var params = url.parse(req.url, true).query;
         var data = multiGet(params)
             .then(function(result){
-                console.log('result -> ' + result);
-                res.send(result);
+                res.json(result);
             });
-//        res.send(data);
     };
 };

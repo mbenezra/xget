@@ -12,5 +12,11 @@
     "q": "^1.1.2",
     "q-io": "^1.11.6",
     "underscore": "^1.7.0"
+  },
+  "devDependencies": {
+    "express": "^4.11.0",
+    "mocha": "^2.1.0",
+    "should": "^4.6.1",
+    "supertest": "^0.15.0"
   }
 }
