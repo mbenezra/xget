@@ -1,0 +1,15 @@
+{
+  "name": "xget",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Benezra",
+  "license": "ISC",
+  "dependencies": {
+    "q": "^1.1.2",
+    "underscore": "^1.7.0"
+  }
+}
