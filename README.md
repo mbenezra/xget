@@ -1,3 +1,5 @@
+[![NPM Downloads][downloads-image]][downloads-url]
+
 # xget
 
 Express middleware for GETing multiple resources in one go!
@@ -32,3 +34,6 @@ This is a reusable express middleware for GETting multiple resources in one go.
 Example of final use
 - GET api/multi ? users=api/users & customer=api/customers/23 & countries=api/countries ..
 returns {users: [..], customer: {..}, countries: [..] } 
+
+[downloads-image]: https://img.shields.io/npm/dm/cookie-parser.svg?style=flat
+[downloads-url]: https://npmjs.org/package/cookie-parser
