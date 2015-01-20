@@ -6,7 +6,7 @@ var should = require('should');
 
 var app = express();
 
-app.use(xget());
+app.use(xget(3000));
 
 app.listen(3000);
 

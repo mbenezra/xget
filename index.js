@@ -6,9 +6,9 @@ var HTTP = require('q-io/http');
 var _ = require('underscore');
 var Q = require('q');
 
-function singleUrl(url, key) {
+function singleUrl(url, key, port) {
     var deferred = Q.defer();
-    HTTP.read('http://localhost:3000/' + url)
+    HTTP.read('http://localhost:' + port + '/' + url)
         .then(function (body) {
             var obj = {};
             obj[key] = JSON.parse(body);
@@ -22,20 +22,20 @@ function singleUrl(url, key) {
     return deferred.promise;
 }
 
-function multipleUrls(urls) {
+function multipleUrls(urls, port) {
     var promises = [];
     _.each(urls, function(url, key){
-        promises.push(singleUrl(url, key));
+        promises.push(singleUrl(url, key, port));
     });
     return Q.all(promises);
 }
 
-function multiGet(urls) {
+function multiGet(urls, port) {
 
     var data = {},
         deferred = Q.defer();
 
-        multipleUrls(urls).then(function (result) {
+        multipleUrls(urls, port).then(function (result) {
             _.each(result, function (json) {
                 data = _.extend(data, json);
             });
@@ -46,7 +46,7 @@ function multiGet(urls) {
     return deferred.promise;
 }
 
-module.exports = function (){
+module.exports = function (port){
     return function (req, res, next){
 
         if (req.url.indexOf('/api/multi') != 0) {
@@ -54,7 +54,7 @@ module.exports = function (){
         }
 
         var params = url.parse(req.url, true).query;
-        var data = multiGet(params)
+        var data = multiGet(params, port)
             .then(function(result){
                 res.json(result);
             });
