@@ -35,5 +35,5 @@ Example of final use
 - GET api/multi ? users=api/users & customer=api/customers/23 & countries=api/countries ..
 returns {users: [..], customer: {..}, countries: [..] } 
 
-[downloads-image]: https://img.shields.io/npm/dm/cookie-parser.svg?style=flat
-[downloads-url]: https://npmjs.org/package/cookie-parser
+[downloads-image]: https://img.shields.io/npm/dm/xget.svg?style=flat
+[downloads-url]: https://npmjs.org/package/xget
