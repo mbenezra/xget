@@ -1,4 +1,7 @@
 # xget
+
+Express middleware for GETing multiple resources in one go!
+
 ## Install
 
 ```bash
