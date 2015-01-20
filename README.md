@@ -1,3 +1,6 @@
+[![NPM Version][npm-image]][npm-url]
+[![NPM Downloads][downloads-image]][downloads-url]
+
 # xget
 
 Express middleware for GETing multiple resources in one go!
